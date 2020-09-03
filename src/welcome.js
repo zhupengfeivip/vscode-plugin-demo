@@ -31,7 +31,7 @@ function invokeCallback(panel, message, resp) {
     if (typeof resp == 'object' && resp.code && resp.code >= 400 && resp.code < 600) {
         util.showError(resp.message || '发生未知错误！');
     }
-    panel.webview.postMessage({cmd: 'vscodeCallback', cbid: message.cbid, data: resp});
+    panel.webview.postMessage({ cmd: 'vscodeCallback', cbid: message.cbid, data: resp });
 }
 
 /**
@@ -49,18 +49,18 @@ const messageHandler = {
     }
 };
 
-module.exports = function(context) {
+module.exports = function (context) {
 
     context.subscriptions.push(vscode.commands.registerCommand('extension.demo.showWelcome', function (uri) {
         const panel = vscode.window.createWebviewPanel(
             'testWelcome', // viewType
-            "自定义欢迎页", // 视图标题
+            "老朱开发助手", // 视图标题
             vscode.ViewColumn.One, // 显示在编辑器的哪个部位
             {
                 enableScripts: true, // 启用JS，默认禁用
             }
         );
-        let global = { panel};
+        let global = { panel };
         panel.webview.html = getWebViewContent(context, 'src/view/custom-welcome.html');
         panel.webview.onDidReceiveMessage(message => {
             if (messageHandler[message.cmd]) {

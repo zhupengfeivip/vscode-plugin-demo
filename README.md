@@ -1,5 +1,16 @@
 # vscode-plugin-demo
 
+# REST Client
+
+## 扩展功能
+
+## 编译说明
+生成本地包
+```
+vsce package
+```
+
+
 VSCode插件开发全攻略系列文章配套demo。
 
 # 文章索引

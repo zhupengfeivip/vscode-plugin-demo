@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>自定义欢迎页</title>
     <link rel="stylesheet" href="../../lib/bootstrap-3.3.1/css/bootstrap.min.css">
     <style>
-        html, body, #app {
+        html,
+        body,
+        #app {
             height: 100%;
         }
+
         ::-webkit-scrollbar {
             width: 10px;
             height: 10px
@@ -39,6 +43,7 @@
         ::-webkit-scrollbar-resizer {
             background-color: #ff6e00
         }
+
         .page-title {
             margin-bottom: 20px;
         }
@@ -72,10 +77,23 @@
 
 <body>
     <div id="app" class="container-fluid">
-        <h3 class="page-title">自定义欢迎页</h3>
+        <h3 class="page-title">老朱开发助手</h3>
         <p class="alert alert-success" style="width: 300px;">{{userName}}，{{time}}好！</p>
         <form class="form-horizontal">
-            <div class="form-group">
+            <div>
+                <input type="text" id="txtOrgMd5" value="111111" style="width: 300px;" />
+                <input type="button" id="btnCreateMd5" value="计算md5" onclick="return createMd5();" />
+                <br />
+                <input type="text" id="txtMd5" value="" style="width: 300px;"></input>
+                <br />
+                <br />
+                <input type="button" id="btnCreateUUIDV4" value="生成UUIDV4" onclick="return createUUIDV4();" />
+                <br />
+                <textarea id="txtUUIDV4" name="txtUUIDV4" rows="5" cols="1"
+                    style="width: 300px; height: 200px;"></textarea>
+                <!-- <input type="text" id="txtUUIDV4" multiple value="" style="width: 300px; height: 400px;"></input> -->
+            </div>
+            <!-- <div class="form-group">
                 <div class="col-sm-6">
                     <div class="checkbox">
                         <label>
@@ -83,7 +101,8 @@
                         </label>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
         </form>
 
     </div>
@@ -91,6 +110,24 @@
     <script src="../../lib/bootstrap-3.3.1/js/bootstrap.min.js"></script>
     <script src="../../lib/vue-2.5.17/vue.js"></script>
     <script src="../../src/view/custom-welcome.js"></script>
+    <script src="../../src/uuidHelper.js"></script>
+    <script src="../../src/md5.js"></script>
+    <script>
+        function createMd5(params) {
+            var md5Value = md5($("#txtOrgMd5").val());
+            console.log(md5Value);
+            $("#txtMd5").val(md5Value);
+        }
+        function createUUIDV4(params) {
+            var uuidStr = "";
+            for (let i = 0; i < 5; i++) {
+                const uuid = uuidV4();
+                uuidStr += uuid + "\r\n";
+            }
+            console.log(uuidStr);
+            $("#txtUUIDV4").val(uuidStr);
+        }
+    </script>
 </body>
 
 </html>

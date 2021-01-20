@@ -1,6 +1,8 @@
 # vscode-plugin-demo
+开发助手
 
-# REST Client
+json文件有注释，所以请使用jsonc打开
+
 
 ## 扩展功能
 
